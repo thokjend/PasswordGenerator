@@ -1,7 +1,8 @@
 import random
 
-print("Password Generator")
-length = int(input("Enter the length of the password: "))
+def set_length():
+    length = int(input("Enter the length of the password: "))
+    return length
 
 def generate_password(length, use_lowercase, use_uppercase, use_numbers, use_special_chars):
     lowercase_letters = "abcdefghijklmnopqrstuvwxyz"
@@ -26,6 +27,44 @@ def generate_password(length, use_lowercase, use_uppercase, use_numbers, use_spe
         password = ""
 
     return password
-   
-password = generate_password(length, True, True, True, True)
-print(f"Your password: {password}")
+
+length = 10
+use_lowercase = True
+use_uppercase = True
+use_numbers = True
+use_special_chars = True
+
+
+while True:
+    print("Password Generator")
+    print("---------------------------------------------")
+    print(f"1. Set length of password       (Currently: {str(length).ljust(5)})")
+    print(f"2. Edit lowercase letters       (Currently: {str(use_lowercase).ljust(5)})")
+    print(f"3. Edit uppercase letters       (Currently: {str(use_uppercase).ljust(5)})")
+    print(f"4. Edit numbers                 (Currently: {str(use_numbers).ljust(5)})")
+    print(f"5. Edit special characters      (Currently: {str(use_special_chars).ljust(5)})")
+    print("6. Generate password")
+    print("7. Exit")
+    print("---------------------------------------------")
+    choice = input("Enter your choice (1-7): ")
+
+
+    if choice == "1":
+        length = set_length()
+    elif choice == "2":
+        use_lowercase = input("Include lowercase letters? (y/n): ").lower() == 'y'
+    elif choice == "3":
+        use_uppercase = input("Include uppercase letters? (y/n): ").lower() == 'y'
+    elif choice == "4":
+        use_numbers = input("Include numbers? (y/n): ").lower() == 'y'
+    elif choice == "5":
+        use_special_chars = input("Include special characters? (y/n): ").lower() == 'y'
+    elif choice == "6":
+        password = generate_password(length, use_lowercase, use_uppercase, use_numbers, use_special_chars)
+        print(f"Your password: {password}")
+        break
+    elif choice == "7":
+        print("Exiting program.")
+        break
+    else:
+        print("Invalid choice. Please select a number from 1 to 7.")    
